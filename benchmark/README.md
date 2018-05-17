@@ -19,7 +19,6 @@ We provide benchmark scripts to run on CIFAR-10, ImageNet and Synthetic Dataset(
 [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) dataset has 60000 32x32 color images in 10 classes.
 The [training scripts](https://github.com/awslabs/keras-apache-mxnet/blob/master/benchmark/image-classification/benchmark_resnet.py)
  will automatically download the dataset, you need to provide dataset name, resnet version 
-
 (1 or 2), number of layers (20, 56, or 110), number of GPUs to use, and number of epoch to use(optional, Default:200). 
 
 Example Usage:
@@ -42,7 +41,6 @@ and Keras Issue [#9502](https://github.com/keras-team/keras/issues/9502),
 Compare to CIFAR-10, you need to provide additional params: training mode and path to imagenet dataset.
 
 Example usage:
-
 
 `python benchmark_resnet.py --dataset imagenet --version 1 -layers 56 --gpus 4 --epoch 20 --train_mode train_on_batch --data_path home/ubuntu/imagenet/train/`
 

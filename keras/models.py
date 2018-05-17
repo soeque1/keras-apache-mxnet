@@ -69,6 +69,9 @@ def save_mxnet_model(model, prefix, epoch=0):
 
     # Returns
         data_names, data_shapes
+
+    # Raises
+        ValueError: Unsupported model type
     """
     assert model is not None, 'MXNet Backend: Invalid state. Model cannot be None.'
 
