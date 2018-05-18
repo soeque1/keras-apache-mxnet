@@ -62,9 +62,9 @@ NOTE:
 
 | Instance Type | GPUs  | Batch Size  | Keras-MXNet (img/sec)  | Keras-TensorFlow (img/sec)  |
 |---|---|---|---|---|
-|  P3.8X Large | 1  | 32  | 202  | 52  |
+|  P3.8X Large | 1  | 32  | 135  | 52  |
 |  P3.8X Large |  4 |  128 | 536  | 162  |
-|  P3.16X Large | 8  | 256  | 681  | 209  |
+|  P3.16X Large | 8  | 256  | 722  | 211  |
 
 #### ResNet50-Synthetic Data
 
@@ -81,8 +81,8 @@ NOTE:
 | Instance Type | GPUs  | Batch Size  | Keras-MXNet (img/sec)  | Keras-TensorFlow (img/sec)  |
 |---|---|---|---|---|
 |  C5.18X Large | 0  | 32  | 87  | 59  |
-|  P3.8X Large | 1  | 32  | 831  | 498  |
-|  P3.8X Large |  4 |  128 | 1783  | 1020  |
+|  P3.8X Large | 1  | 32  | 831  | 509  |
+|  P3.8X Large |  4 |  128 | 1783  | 699  |
 |  P3.16X Large | 8  | 256  | 1680  | 435  |
 
 
