@@ -149,15 +149,15 @@ def test_inceptionresnetv2():
     _test_app_pooling(app, last_dim)
 
 
-@pytest.mark.skipif((K.backend() == 'mxnet'),
-                    reason='MXNet backend does not support depthwise_conv2d yet.')
 def test_mobilenet():
     app = applications.MobileNet
     last_dim = 1024
     _test_application_basic(app)
-    _test_application_notop(app, last_dim)
-    _test_application_variable_input_channels(app, last_dim)
-    _test_app_pooling(app, last_dim)
+    # MXNet backend requires input shape for convolution
+    if K.backend() != 'mxnet':
+        _test_application_notop(app, last_dim)
+        _test_application_variable_input_channels(app, last_dim)
+        _test_app_pooling(app, last_dim)
 
 
 @pytest.mark.skipif((K.backend() == 'mxnet'),
