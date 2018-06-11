@@ -3042,13 +3042,19 @@ def conv1d(x, kernel, strides=1, padding='valid',
         data_format = image_data_format()
     _validate_data_format(data_format)
 
-    # Causal requires temporal padding.
-    # MXNet backend does not support temporal padding on 3D tensor.
-    if padding is 'causal':
-        raise ValueError('MXNet Backend: conv1d does not support "causal" padding mode')
+    if padding not in {'same', 'valid', 'causal'}:
+        raise ValueError('MXNet Backend: `padding` should be either `same`, `valid` or `causal`.')
 
-    if padding not in {'same', 'valid'}:
-        raise ValueError('MXNet Backend: `padding` should be either `same` or `valid`.')
+    if ndim(x) != 3:
+        raise ValueError('MXNet Backend: Conv1D with causal padding is supported only for 3D tensors')
+
+    # Causal requires temporal padding.
+    # Add temporal padding
+    kernel_shape = kernel.shape
+    if padding == 'causal':
+        pad = dilation_rate * (kernel_shape[0] - 1)
+        x = temporal_padding(x, (pad, 0))
+        padding = 'valid'
 
     if hasattr(x, '_keras_shape'):
         shape = x._keras_shape
@@ -3805,6 +3811,8 @@ class KerasSymbol(object):
             in_slice = (in_slice,)
         for i in in_slice:
             if isinstance(i, int):
+               # if i < 0:
+                #    mx.sym.slice_axis(in_slice, axis=abs(i), begin=i, end=i+1)
                 begin.append(i)
                 end.append(i + 1)
             elif isinstance(i, slice):
