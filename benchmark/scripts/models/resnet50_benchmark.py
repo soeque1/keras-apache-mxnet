@@ -29,7 +29,7 @@ class Resnet50Benchmark:
         self.test_name = "resnet50"
         self.sample_type = "images"
         self.total_time = 0
-        self.batch_size = 32
+        self.batch_size = 16
         self.epochs = 20
         self.num_samples = 1000
         self.test_type = 'tf.keras, eager_mode'
